@@ -1,0 +1,11 @@
+Header add Access-Control-Allow-Origin "*"
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !/(admin|stock|pedidos|contactos|transacciones|gastos)/?
+RewriteRule ^(.*) index.php [L,QSA]
+RewriteCond %{REQUEST_URI} ^/?$
+Rewriterule ^(.*)$ https://vagus-tests.000webhostapp.com/admin [L,R=301]
+RewriteRule ^/?(stock|pedidos|contactos|transacciones|gastos)/?$ /admin/ [R,L]
